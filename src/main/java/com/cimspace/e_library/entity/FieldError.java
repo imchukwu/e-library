@@ -1,4 +1,4 @@
-package com.cimspace.e_library.model;
+package com.cimspace.e_library.entity;
 
 
 public class FieldError {

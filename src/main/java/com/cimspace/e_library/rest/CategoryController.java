@@ -1,6 +1,6 @@
 package com.cimspace.e_library.rest;
 
-import com.cimspace.e_library.model.CategoryDTO;
+import com.cimspace.e_library.entity.CategoryDTO;
 import com.cimspace.e_library.service.CategoryService;
 import java.util.List;
 import javax.validation.Valid;

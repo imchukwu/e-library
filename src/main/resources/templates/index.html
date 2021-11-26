@@ -48,7 +48,7 @@
                 <div th:each="author: ${book.getBookAuthors()}">
                   <small th:text="${author.getName()}"></small><br />
                 </div>
-                <p><button>Download</button></p>
+                <p><button th:href="@{|api/books/download?id=${obj.id}||}">Download</button></p>
               </div>
             </div>
           </div>

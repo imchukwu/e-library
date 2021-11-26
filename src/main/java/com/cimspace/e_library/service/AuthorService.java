@@ -1,6 +1,6 @@
 package com.cimspace.e_library.service;
 
-import com.cimspace.e_library.model.AuthorDTO;
+import com.cimspace.e_library.entity.AuthorDTO;
 import com.cimspace.e_library.domain.Author;
 import com.cimspace.e_library.repos.AuthorRepository;
 import java.util.List;

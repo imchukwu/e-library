@@ -1,6 +1,6 @@
 package com.cimspace.e_library.rest;
 
-import com.cimspace.e_library.model.AuthorDTO;
+import com.cimspace.e_library.entity.AuthorDTO;
 import com.cimspace.e_library.service.AuthorService;
 import java.util.List;
 import javax.validation.Valid;

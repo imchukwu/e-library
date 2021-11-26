@@ -1,10 +1,8 @@
-package com.cimspace.e_library.model;
-
-import org.hibernate.engine.jdbc.BinaryStream;
+package com.cimspace.e_library.entity;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,6 +18,10 @@ public class BookDTO {
 
     @Size(max = 255)
     private String title;
+
+    private String extension;
+
+    private String bookuri;
 
     private String description;
 
@@ -85,5 +87,13 @@ public class BookDTO {
     public void setBookAuthors(final Set<AuthorDTO> bookAuthors) {
         this.bookAuthors = bookAuthors;
     }
+
+    public String getExtension() { return extension;}
+
+    public void setExtension(String extension) { this.extension = extension;}
+
+    public String getBookuri() {return bookuri;}
+
+    public void setBookuri(String bookuri) {this.bookuri = bookuri;}
 
 }

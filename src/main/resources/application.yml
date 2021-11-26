@@ -2,7 +2,7 @@ spring:
   datasource:
     url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/e-library}
     username: ${JDBC_DATABASE_USERNAME:postgres}
-    password: ${JDBC_DATABASE_PASSWORD:password}
+    password: ${JDBC_DATABASE_PASSWORD:rotimi}
   dbcp2:
     max-wait-millis: 30000
     validation-query: "SELECT 1"
@@ -18,6 +18,9 @@ spring:
             non_contextual_creation: true
         id:
           new_generator_mappings: true
+
+file:
+  upload-dir: src/main/resources/static/Images
 
 springdoc:
   pathsToMatch: /api/**

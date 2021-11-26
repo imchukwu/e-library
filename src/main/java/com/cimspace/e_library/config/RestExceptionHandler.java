@@ -1,7 +1,7 @@
 package com.cimspace.e_library.config;
 
-import com.cimspace.e_library.model.ErrorResponse;
-import com.cimspace.e_library.model.FieldError;
+import com.cimspace.e_library.entity.ErrorResponse;
+import com.cimspace.e_library.entity.FieldError;
 
 import java.util.List;
 import java.util.stream.Collectors;

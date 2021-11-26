@@ -32,6 +32,12 @@ public class Book {
     @Column(columnDefinition = "text")
     private String description;
 
+    @Column(columnDefinition = "text")
+    private String BookUri;
+
+    @Column(columnDefinition = "text")
+    private String bookextenstion;
+
     @Column
     private LocalDate dateOfPublication;
 
@@ -135,5 +141,13 @@ public class Book {
     public void setLastUpdated(final OffsetDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+    public String getBookUri() { return BookUri; }
+
+    public void setBookUri(String bookUri) { BookUri = bookUri;}
+
+    public String getBookextenstion() {return bookextenstion;}
+
+    public void setBookextenstion(String bookextenstion) {this.bookextenstion = bookextenstion;}
 
 }

@@ -1,7 +1,7 @@
 package com.cimspace.e_library.service;
 
 import com.cimspace.e_library.domain.Category;
-import com.cimspace.e_library.model.CategoryDTO;
+import com.cimspace.e_library.entity.CategoryDTO;
 import com.cimspace.e_library.repos.CategoryRepository;
 import java.util.List;
 import java.util.stream.Collectors;

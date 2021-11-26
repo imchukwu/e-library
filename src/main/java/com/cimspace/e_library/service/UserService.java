@@ -1,7 +1,7 @@
 package com.cimspace.e_library.service;
 
 import com.cimspace.e_library.domain.User;
-import com.cimspace.e_library.model.UserDTO;
+import com.cimspace.e_library.entity.UserDTO;
 import com.cimspace.e_library.repos.UserRepository;
 import java.util.List;
 import java.util.stream.Collectors;

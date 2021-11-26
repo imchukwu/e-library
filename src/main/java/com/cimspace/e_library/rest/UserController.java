@@ -1,6 +1,6 @@
 package com.cimspace.e_library.rest;
 
-import com.cimspace.e_library.model.UserDTO;
+import com.cimspace.e_library.entity.UserDTO;
 import com.cimspace.e_library.service.UserService;
 import java.util.List;
 import javax.validation.Valid;
