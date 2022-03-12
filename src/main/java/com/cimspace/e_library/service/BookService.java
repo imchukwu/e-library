@@ -1,19 +1,18 @@
 package com.cimspace.e_library.service;
 
+import com.cimspace.e_library.domain.Author;
 import com.cimspace.e_library.domain.Book;
 import com.cimspace.e_library.domain.Category;
 import com.cimspace.e_library.model.AuthorDTO;
 import com.cimspace.e_library.model.BookDTO;
-import com.cimspace.e_library.domain.Author;
 import com.cimspace.e_library.model.CategoryDTO;
 import com.cimspace.e_library.repos.AuthorRepository;
 import com.cimspace.e_library.repos.BookRepository;
 import com.cimspace.e_library.repos.CategoryRepository;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -71,7 +70,6 @@ public class BookService {
         bookDTO.setDescription(book.getDescription());
         bookDTO.setDateOfPublication(book.getDateOfPublication());
         bookDTO.setCategoryBooks(new CategoryDTO(book.getCategoryBooks().getCategoryId(), book.getCategoryBooks().getName()));
-//        bookDTO.setBookAuthors(new AuthorDTO(book.getBookAuthors().get));
         bookDTO.setBookAuthors(book.getBookAuthors() == null ? null : book.getBookAuthors().stream()
                 .map(author -> new AuthorDTO(author.getAuthorId(), author.getName()))
                 .collect(Collectors.toSet()));
@@ -92,12 +90,12 @@ public class BookService {
         if (bookDTO.getBookAuthors() != null) {
             final List<Author> bookAuthors =
                     authorRepository.findAllById(bookDTO.getBookAuthors().stream()
-                            .map(authorDTO -> authorDTO.getAuthorId())
+                            .map(AuthorDTO::getAuthorId)
                             .collect(Collectors.toList()));
             if (bookAuthors.size() != bookDTO.getBookAuthors().size()) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "one of bookAuthors not found");
             }
-            book.setBookAuthors(bookAuthors.stream().collect(Collectors.toSet()));
+            book.setBookAuthors(new HashSet<>(bookAuthors));
         }
         return book;
     }
@@ -105,25 +103,5 @@ public class BookService {
     public List<BookDTO> getHomeBooks(){
         return findAll().stream().limit(8).collect(Collectors.toList());
     }
-
-//    final private List<BookDTO> books = findAll();
-
-//    public Page<BookDTO> findPaginated(Pageable pageable) {
-//        int pageSize = pageable.getPageSize();
-//        int currentPage = pageable.getPageNumber();
-//        int startItem = currentPage * pageSize;
-//        List<BookDTO> list;
-//
-//        if (books.size() < startItem) {
-//            list = Collections.emptyList();
-//        } else {
-//            int toIndex = Math.min(startItem + pageSize, books.size());
-//            list = books.subList(startItem, toIndex);
-//        }
-//
-//        Page<BookDTO> bookPage = new PageImpl<BookDTO>(list, PageRequest.of(currentPage, pageSize), books.size());
-//
-//        return bookPage;
-//    }
 
 }

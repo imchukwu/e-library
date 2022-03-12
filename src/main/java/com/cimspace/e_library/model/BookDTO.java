@@ -1,9 +1,6 @@
 package com.cimspace.e_library.model;
 
-import org.hibernate.engine.jdbc.BinaryStream;
-
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -86,4 +83,16 @@ public class BookDTO {
         this.bookAuthors = bookAuthors;
     }
 
+    @Override
+    public String toString() {
+        return "BookDTO{" +
+            "bookId='" + bookId + '\'' +
+            ", isbn='" + isbn + '\'' +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", dateOfPublication=" + dateOfPublication +
+            ", categoryBooks=" + categoryBooks +
+            ", bookAuthors=" + bookAuthors +
+            '}';
+    }
 }

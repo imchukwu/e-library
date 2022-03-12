@@ -54,4 +54,12 @@ public class AuthorDTO {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "AuthorDTO{" +
+            "authorId='" + authorId + '\'' +
+            ", name='" + name + '\'' +
+            ", authorBooks=" + authorBooks +
+            '}';
+    }
 }

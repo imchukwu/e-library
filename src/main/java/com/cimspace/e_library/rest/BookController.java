@@ -2,20 +2,21 @@ package com.cimspace.e_library.rest;
 
 import com.cimspace.e_library.model.BookDTO;
 import com.cimspace.e_library.service.BookService;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import javax.validation.Valid;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -28,11 +29,6 @@ public class BookController {
     public BookController(final BookService bookService) {
         this.bookService = bookService;
     }
-
-//    @GetMapping
-//    public ResponseEntity<List<BookDTO>> getAllBooks() {
-//        return ResponseEntity.ok(bookService.findAll());
-//    }
 
     @GetMapping
     @ResponseBody
@@ -72,34 +68,9 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public String listBooks(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(8);
-
-//        Page<BookDTO> bookPage = bookService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
-
-//        model.addAttribute("bookPage", bookPage);
-//
-//        int totalPages = bookPage.getTotalPages();
-//        if (totalPages > 0) {
-//            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-//                    .boxed()
-//                    .collect(Collectors.toList());
-//            model.addAttribute("pageNumbers", pageNumbers);
-//        }
-
+    @GetMapping(value = "/books")
+    public String listBooks(@RequestParam("page") Optional<Integer> page) {
         return "books.html";
     }
-
-//    @GetMapping("/{bookId}")
-//    @ResponseBody
-//    public ModelAndView bookDetails(@PathVariable final String bookId) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("book", bookService.get(bookId));
-//        modelAndView.getModel();
-//        modelAndView.setViewName("book-details");
-//        return modelAndView;
-//    }
 
 }

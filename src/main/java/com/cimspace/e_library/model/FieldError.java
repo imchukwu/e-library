@@ -22,4 +22,11 @@ public class FieldError {
         this.errorCode = errorCode;
     }
 
+    @Override
+    public String toString() {
+        return "FieldError{" +
+            "field='" + field + '\'' +
+            ", errorCode='" + errorCode + '\'' +
+            '}';
+    }
 }

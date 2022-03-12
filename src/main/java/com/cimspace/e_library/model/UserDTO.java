@@ -72,4 +72,15 @@ public class UserDTO {
         this.isAdmin = isAdmin;
     }
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+            "userId='" + userId + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", isAdmin=" + isAdmin +
+            '}';
+    }
 }
