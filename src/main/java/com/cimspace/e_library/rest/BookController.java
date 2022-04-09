@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/books", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BookController {
 
     private final BookService bookService;
@@ -30,7 +30,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     @ResponseBody
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
@@ -40,7 +40,7 @@ public class BookController {
         return modelAndView;
     }
 
-    @GetMapping("/{bookId}")
+    @GetMapping("/book/{bookId}")
     public ModelAndView getBook(@PathVariable final String bookId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("book", bookService.get(bookId));
@@ -49,28 +49,28 @@ public class BookController {
         return modelAndView;
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<Void> createBook(@RequestBody @Valid final BookDTO bookDTO) {
         bookService.create(bookDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{bookId}")
+    @PutMapping("/update/{bookId}")
     public ResponseEntity<Void> updateBook(@PathVariable final String bookId,
             @RequestBody @Valid final BookDTO bookDTO) {
         bookService.update(bookId, bookDTO);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{bookId}")
+    @DeleteMapping("/remove/{bookId}")
     public ResponseEntity<Void> deleteBook(@PathVariable final String bookId) {
         bookService.delete(bookId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping(value = "/books")
+    @GetMapping(value = "/all-books")
     public String listBooks(@RequestParam("page") Optional<Integer> page) {
-        return "books.html";
+        return "books";
     }
 
 }

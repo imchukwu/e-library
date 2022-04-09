@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/api/categorys", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/nesera/category", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -27,30 +27,30 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<CategoryDTO>> getAllCategorys() {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-    @GetMapping("/{categoryId}")
+    @GetMapping("/category/{categoryId}")
     public ResponseEntity<CategoryDTO> getCategory(@PathVariable final String categoryId) {
         return ResponseEntity.ok(categoryService.get(categoryId));
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<Void> createCategory(@RequestBody @Valid final CategoryDTO categoryDTO) {
         categoryService.create(categoryDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{categoryId}")
+    @PutMapping("/update/{categoryId}")
     public ResponseEntity<Void> updateCategory(@PathVariable final String categoryId,
             @RequestBody @Valid final CategoryDTO categoryDTO) {
         categoryService.update(categoryId, categoryDTO);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{categoryId}")
+    @DeleteMapping("/remove/{categoryId}")
     public ResponseEntity<Void> deleteCategory(@PathVariable final String categoryId) {
         categoryService.delete(categoryId);
         return ResponseEntity.noContent().build();

@@ -27,30 +27,30 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
         return ResponseEntity.ok(authorService.findAll());
     }
 
-    @GetMapping("/{authorId}")
+    @GetMapping("/author/{authorId}")
     public ResponseEntity<AuthorDTO> getAuthor(@PathVariable final String authorId) {
         return ResponseEntity.ok(authorService.get(authorId));
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<Void> createAuthor(@RequestBody @Valid final AuthorDTO authorDTO) {
         authorService.create(authorDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{authorId}")
+    @PutMapping("/update/{authorId}")
     public ResponseEntity<Void> updateAuthor(@PathVariable final String authorId,
             @RequestBody @Valid final AuthorDTO authorDTO) {
         authorService.update(authorId, authorDTO);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{authorId}")
+    @DeleteMapping("/remove/{authorId}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable final String authorId) {
         authorService.delete(authorId);
         return ResponseEntity.noContent().build();

@@ -1,13 +1,15 @@
-package com.cimspace.e_library;
+package com.cimspace.e_library.rest.controllers;
 
 import com.cimspace.e_library.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+@RequestMapping("/nesera/library")
 public class HomeController {
 
     private final BookService bookService;
@@ -27,7 +29,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/book-details")
+    @GetMapping("/books/details")
     @ResponseBody
     public ModelAndView book() {
         ModelAndView modelAndView = new ModelAndView();
