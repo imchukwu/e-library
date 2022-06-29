@@ -1,7 +1,7 @@
 package com.cimspace.e_library.rest;
 
-import com.cimspace.e_library.model.UserDTO;
-import com.cimspace.e_library.service.UserService;
+import com.cimspace.e_library.model.UserRegistrationDTO;
+import com.cimspace.e_library.service.implementation.UserServiceImpl;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -21,38 +21,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
-    public UserController(final UserService userService) {
-        this.userService = userService;
+    public UserController(final UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<List<UserRegistrationDTO>> getAllUsers() {
+        return ResponseEntity.ok(userServiceImpl.findAll());
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable final String userId) {
-        return ResponseEntity.ok(userService.get(userId));
+    public ResponseEntity<UserRegistrationDTO> getUser(@PathVariable final Long userId) {
+        return ResponseEntity.ok(userServiceImpl.get(userId));
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Void> createUser(@RequestBody @Valid final UserDTO userDTO) {
-        userService.create(userDTO);
+    public ResponseEntity<Void> createUser(@RequestBody @Valid final UserRegistrationDTO userRegistrationDTO) {
+        userServiceImpl.create(userRegistrationDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{userId}")
-    public ResponseEntity<Void> updateUser(@PathVariable final String userId,
-            @RequestBody @Valid final UserDTO userDTO) {
-        userService.update(userId, userDTO);
+    public ResponseEntity<Void> updateUser(@PathVariable final Long userId,
+            @RequestBody @Valid final UserRegistrationDTO userRegistrationDTO) {
+        userServiceImpl.update(userId, userRegistrationDTO);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/remove/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable final String userId) {
-        userService.delete(userId);
+    public ResponseEntity<Void> deleteUser(@PathVariable final Long userId) {
+        userServiceImpl.delete(userId);
         return ResponseEntity.noContent().build();
     }
 

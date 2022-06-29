@@ -1,4 +1,4 @@
-package com.cimspace.e_library.service;
+package com.cimspace.e_library.service.implementation;
 
 import com.cimspace.e_library.model.AuthorDTO;
 import com.cimspace.e_library.domain.Author;
@@ -11,11 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 @Service
-public class AuthorService {
+public class AuthorServiceImpl {
 
     private final AuthorRepository authorRepository;
 
-    public AuthorService(final AuthorRepository authorRepository) {
+    public AuthorServiceImpl(final AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 

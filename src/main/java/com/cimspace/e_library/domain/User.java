@@ -1,21 +1,17 @@
 package com.cimspace.e_library.domain;
 
-import java.time.OffsetDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Table(name = "\"user\"")
-public class User {
-
-    @Id
-    @Column(nullable = false, updatable = false)
-    private String userId;
+public class User extends AbstractEntity {
 
     @Column
     private String firstname;
@@ -24,37 +20,24 @@ public class User {
     private String lastname;
 
     @Column
+    private String username;
+    @Column
     private String email;
 
     @Column
     private String password;
 
+    @OneToMany
     @Column
-    private Boolean isAdmin;
+    private List<Role> userRole = new ArrayList<>();
 
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
 
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
-
-    @PrePersist
-    public void prePersist() {
-        dateCreated = OffsetDateTime.now();
-        lastUpdated = dateCreated;
+    public String getUsername() {
+        return username;
     }
 
-    @PreUpdate
-    public void preUpdate() {
-        lastUpdated = OffsetDateTime.now();
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(final String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstname() {
@@ -89,28 +72,11 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getIsAdmin() {
-        return isAdmin;
+    public List<Role> getUserRole() {
+        return userRole;
     }
 
-    public void setIsAdmin(final Boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setUserRole(List<Role> userRole) {
+        this.userRole = userRole;
     }
-
-    public OffsetDateTime getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(final OffsetDateTime dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public OffsetDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(final OffsetDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
 }

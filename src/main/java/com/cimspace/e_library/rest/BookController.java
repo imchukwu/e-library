@@ -1,7 +1,7 @@
 package com.cimspace.e_library.rest;
 
 import com.cimspace.e_library.model.BookDTO;
-import com.cimspace.e_library.service.BookService;
+import com.cimspace.e_library.service.implementation.BookServiceImpl;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -24,17 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/api/books", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BookController {
 
-    private final BookService bookService;
+    private final BookServiceImpl bookServiceImpl;
 
-    public BookController(final BookService bookService) {
-        this.bookService = bookService;
+    public BookController(final BookServiceImpl bookServiceImpl) {
+        this.bookServiceImpl = bookServiceImpl;
     }
 
     @GetMapping("/")
     @ResponseBody
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("books", bookService.findAll());
+        modelAndView.addObject("books", bookServiceImpl.findAll());
         modelAndView.getModel();
         modelAndView.setViewName("/books");
         return modelAndView;
@@ -43,7 +43,7 @@ public class BookController {
     @GetMapping("/book/{bookId}")
     public ModelAndView getBook(@PathVariable final String bookId) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("book", bookService.get(bookId));
+        modelAndView.addObject("book", bookServiceImpl.get(bookId));
         modelAndView.getModel();
         modelAndView.setViewName("book-details");
         return modelAndView;
@@ -51,20 +51,20 @@ public class BookController {
 
     @PostMapping("/new")
     public ResponseEntity<Void> createBook(@RequestBody @Valid final BookDTO bookDTO) {
-        bookService.create(bookDTO);
+        bookServiceImpl.create(bookDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{bookId}")
     public ResponseEntity<Void> updateBook(@PathVariable final String bookId,
             @RequestBody @Valid final BookDTO bookDTO) {
-        bookService.update(bookId, bookDTO);
+        bookServiceImpl.update(bookId, bookDTO);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/remove/{bookId}")
     public ResponseEntity<Void> deleteBook(@PathVariable final String bookId) {
-        bookService.delete(bookId);
+        bookServiceImpl.delete(bookId);
         return ResponseEntity.noContent().build();
     }
 

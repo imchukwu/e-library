@@ -1,4 +1,4 @@
-package com.cimspace.e_library.service;
+package com.cimspace.e_library.service.implementation;
 
 import com.cimspace.e_library.domain.Author;
 import com.cimspace.e_library.domain.Book;
@@ -20,14 +20,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Transactional
 @Service
-public class BookService {
+public class BookServiceImpl {
 
     private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
     private final AuthorRepository authorRepository;
 
-    public BookService(final BookRepository bookRepository,
-            final CategoryRepository categoryRepository, final AuthorRepository authorRepository) {
+    public BookServiceImpl(final BookRepository bookRepository,
+                           final CategoryRepository categoryRepository, final AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
         this.categoryRepository = categoryRepository;
         this.authorRepository = authorRepository;
