@@ -1,4 +1,4 @@
-package com.cimspace.e_library.rest.controllers;
+package com.cimspace.e_library.rest;
 
 import com.cimspace.e_library.service.BookService;
 import org.springframework.stereotype.Controller;
