@@ -1,6 +1,5 @@
 package com.cimspace.e_library.service.implementation;
 
-import com.cimspace.e_library.domain.Role;
 import com.cimspace.e_library.domain.User;
 import com.cimspace.e_library.exception.UserAlreadyExistException;
 import com.cimspace.e_library.mapper.UserMapper.UserMapper;
@@ -85,7 +84,6 @@ public class UserServiceImpl implements UserService {
         user.setLastname(registrationDTO.getLastname());
         user.setPassword(registrationDTO.getPassword());
         user.setEmail(registrationDTO.getEmail());
-        user.setUserRole(Arrays.asList(new Role()));
 
         //Todo replace with mapstruct
         return UserMapper.toUserRespond(userRepository.save(user));
