@@ -27,9 +27,6 @@ public class User extends AbstractEntity {
     @Column
     private String password;
 
-    @OneToMany
-    @Column
-    private List<Role> userRole = new ArrayList<>();
 
 
     public String getUsername() {
@@ -72,11 +69,5 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
-    public List<Role> getUserRole() {
-        return userRole;
-    }
 
-    public void setUserRole(List<Role> userRole) {
-        this.userRole = userRole;
-    }
 }
