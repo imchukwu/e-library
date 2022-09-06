@@ -15,9 +15,6 @@ import java.util.List;
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable{
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -2361696892354119780L;
 
 
