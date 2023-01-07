@@ -1,4 +1,4 @@
-package com.cimspace.e_library.rest;
+package com.cimspace.e_library.controller;
 
 import com.cimspace.e_library.exception.UserAlreadyExistException;
 import com.cimspace.e_library.model.UserRegistrationDTO;

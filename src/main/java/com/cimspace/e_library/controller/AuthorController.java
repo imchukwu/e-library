@@ -1,4 +1,4 @@
-package com.cimspace.e_library.rest;
+package com.cimspace.e_library.controller;
 
 import com.cimspace.e_library.model.AuthorDTO;
 import com.cimspace.e_library.service.implementation.AuthorServiceImpl;
