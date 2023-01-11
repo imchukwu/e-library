@@ -1,7 +1,7 @@
-package com.cimspace.e_library.rest;
+package com.cimspace.e_library.controller;
 
 import com.cimspace.e_library.model.AuthorDTO;
-import com.cimspace.e_library.service.AuthorService;
+import com.cimspace.e_library.service.implementation.AuthorServiceImpl;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -21,38 +21,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/authors", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthorController {
 
-    private final AuthorService authorService;
+    private final AuthorServiceImpl authorServiceImpl;
 
-    public AuthorController(final AuthorService authorService) {
-        this.authorService = authorService;
+    public AuthorController(final AuthorServiceImpl authorServiceImpl) {
+        this.authorServiceImpl = authorServiceImpl;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
-        return ResponseEntity.ok(authorService.findAll());
+        return ResponseEntity.ok(authorServiceImpl.findAll());
     }
 
-    @GetMapping("/{authorId}")
+    @GetMapping("/author/{authorId}")
     public ResponseEntity<AuthorDTO> getAuthor(@PathVariable final String authorId) {
-        return ResponseEntity.ok(authorService.get(authorId));
+        return ResponseEntity.ok(authorServiceImpl.get(authorId));
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<Void> createAuthor(@RequestBody @Valid final AuthorDTO authorDTO) {
-        authorService.create(authorDTO);
+        authorServiceImpl.create(authorDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{authorId}")
+    @PutMapping("/update/{authorId}")
     public ResponseEntity<Void> updateAuthor(@PathVariable final String authorId,
             @RequestBody @Valid final AuthorDTO authorDTO) {
-        authorService.update(authorId, authorDTO);
+        authorServiceImpl.update(authorId, authorDTO);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{authorId}")
+    @DeleteMapping("/remove/{authorId}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable final String authorId) {
-        authorService.delete(authorId);
+        authorServiceImpl.delete(authorId);
         return ResponseEntity.noContent().build();
     }
 

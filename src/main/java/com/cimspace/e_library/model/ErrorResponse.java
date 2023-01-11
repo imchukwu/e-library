@@ -42,4 +42,13 @@ public class ErrorResponse {
         this.fieldErrors = fieldErrors;
     }
 
+    @Override
+    public String toString() {
+        return "ErrorResponse{" +
+            "httpStatus=" + httpStatus +
+            ", exception='" + exception + '\'' +
+            ", message='" + message + '\'' +
+            ", fieldErrors=" + fieldErrors +
+            '}';
+    }
 }

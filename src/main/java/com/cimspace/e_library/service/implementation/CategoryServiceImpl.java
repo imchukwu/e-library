@@ -1,4 +1,4 @@
-package com.cimspace.e_library.service;
+package com.cimspace.e_library.service.implementation;
 
 import com.cimspace.e_library.domain.Category;
 import com.cimspace.e_library.model.CategoryDTO;
@@ -11,11 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 @Service
-public class CategoryService {
+public class CategoryServiceImpl {
 
     private final CategoryRepository categoryRepository;
 
-    public CategoryService(final CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(final CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
